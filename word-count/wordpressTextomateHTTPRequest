@@ -1,0 +1,44 @@
+<?php
+
+// ADD THE FOLLOWING FUNCTIONS TO YOUR functions.php
+
+function so46065926_scripts() {
+
+		wp_enqueue_script( 'so46065926-ajax', get_theme_file_uri( '/ajaxUploader.js' ), array( 'jquery' ) );
+
+		// Make the Ajax URL available in your ajax.js
+		wp_localize_script( 'so46065926-ajax', 'so46065926', array(
+			'ajaxURL' => admin_url( 'admin-ajax.php' ),
+		) );
+}
+add_action( 'wp_enqueue_scripts', 'so46065926_scripts' );
+
+function so46065926_research() {
+
+	$file_data = isset( $_FILES ) ? $_FILES : array();
+
+	$boundary = 'myBoundary';
+
+	$body = '';
+	$body .= '--' . $boundary . "\r\n";
+	$body .= 'Content-Disposition: form-data; name="file"; filename="' . $file_data['file']['name'] . "\"\r\n";
+	$body .= 'Content-Type: application/pdf' . "\r\n\r\n";
+	$body .= file_get_contents($file_data['file']['tmp_name']) . "\r\n";
+	$body .= '--' . $boundary . '--' . "\r\n";
+
+	$response = wp_remote_post( 'https://textomate.com/a/uploadMultiple',
+		array(
+			'method' => 'POST',
+			'headers' => [
+				'Content-Type' => "multipart/form-data; boundary=$boundary"
+			],
+			'body' => $body,
+		)
+	);
+
+	echo json_encode($response);
+	wp_die(); // Don't forget to add this line, otherwise you'll get 0 at the end of your response.
+}
+
+add_action( 'wp_ajax_research',        'so46065926_research' );
+add_action( 'wp_ajax_nopriv_research', 'so46065926_research' );
