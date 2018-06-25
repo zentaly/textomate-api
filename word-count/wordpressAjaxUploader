@@ -1,0 +1,37 @@
+jQuery(document).ready( function($) {
+
+    $('#file_upload').change(function (event) {
+        sendFiles(event.srcElement.files)
+    });
+
+    function sendFiles(files) {
+        let droppedFiles = Array.from(files);
+
+        $.each(droppedFiles, function(i, file) {
+
+            let fileData = new FormData();
+            fileData.append('file', file);
+            fileData.append('action', 'research');
+            $.ajax({
+                type : "post",
+                url : so46065926.ajaxURL, // The URL to admin-ajax.php, set in functions.php
+                data : fileData,
+                contentType:false,
+                processData:false,
+                success: function(stringResponse) {
+                    const response = JSON.parse(stringResponse);
+                    if(!response.errors) {
+                        // Response is in body
+                        const body = JSON.parse(response.body);
+                    }
+                    else {
+                        // Response errors
+                        console.log(Object.keys(response.errors)[0]);
+                    }
+                }
+            });
+        });
+    }
+
+});
+
