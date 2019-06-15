@@ -1,0 +1,1 @@
+curl -X POST -F 'file=@textomate-api.pdf;type=text/plain' https://textomate.com/a/uploadMultiple
