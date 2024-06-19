@@ -1,0 +1,10 @@
+{
+  "name": "textomate",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "express": "4.19.2",
+    "finalhandler": "1.2.0",
+    "serve-static": "1.15.0"
+  }
+}

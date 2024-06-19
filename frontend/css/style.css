@@ -1,0 +1,78 @@
+li {
+  font-size: 16px;
+}
+
+a:hover {
+    color: #555 !important;
+    text-decoration: none !important;
+}
+
+.brand {
+    font-size: 19px;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+*,h1,h2,h3,h4,h5,h6 {
+	font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+    margin-top: 10px !important;
+    font-size: 60px;
+}
+
+h2 {
+    font-size: 35px;
+}
+
+.holder {
+    border: 5px dashed #ccc;
+    width: 400px;
+    min-height: 110px;
+    margin: 20px auto;
+    line-height: 110px;
+    vertical-align: middle;
+}
+.dragging {
+    border: 5px dashed #00AA00;
+}
+
+.low-priority-text {
+    color: 9B9B9B;
+    font-size: large;
+}
+
+.high-priority-text {
+    font-size: large;
+}
+
+.space {
+    margin: 15px 5px;
+}
+
+.top {
+    margin: 5px 0px 0px 0px;
+}
+
+.hor-space {
+    margin: 0px 5px 0px 5px;
+}
